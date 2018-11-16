@@ -21,8 +21,17 @@ $desktop: "min-width:900px";
 /* END OF Variables and Mixins */
 
 body {
-  font-size: 16px;
+  font-size: 18px;
   font-family: 'Nunito', sans-serif;
+
+  @media ($tablet) {
+    font-size:16px;
+  }
+}
+
+.container {
+  max-width: 1020px;
+  margin: auto;
 }
 
 header {
@@ -108,10 +117,10 @@ header {
       }
 
       .header-cta-caption {
-          margin-top: 6px;
+          margin-top: 8px;
           display: block;
           width: 100%;
-          font-size: 11px;
+          font-size: 14px;
           text-align: center;
       }
   }
@@ -141,8 +150,9 @@ section.hero {
     @extend %clearfix;
 
     @media ($tablet) {
-      width: 564px;
+      width: 424px;
       float: right;
+      margin-right: 42px;
     }
   }
 
@@ -157,7 +167,7 @@ section.hero {
       float: right;
       width: 226px;
       margin-top: 30px;
-      margin-right: 20%;
+      margin-bottom: 14px;
     }
     
 
@@ -177,7 +187,7 @@ section.hero {
       display: block;
       float: left;
       width: auto;
-      margin: 24px 0 24px 48px;
+      margin: 24px 0;
       height: 236px;
   
     }
@@ -200,7 +210,6 @@ section.hero {
       display:block;
       float: right;
       width:224px;
-      margin-right: 20%;
       margin-top: 0
     }
   }
@@ -269,23 +278,36 @@ section.peeps {
   @media ($tablet) {
     width: 50%;
     display: inline-block;
+    vertical-align: top;
   }
 
   img.peeps-img {
     display: block;
     width: 80%;
     margin: 0 auto 24px;
+    @media ($tablet) {
+      max-width: 360px;
+    }
   }
 
   ul {
     list-style: disc inside;
     margin: 0 24px 24px;
+    @media ($tablet) {
+      text-align: center;
+    }
 
     h3 {
       font-size: 22px;
       line-height: 1.2;
       margin-bottom: 24px;
       font-weight: bold;
+      @media ($tablet) {
+        br {
+          display: none;
+        }
+      }
+      
     }
 
     li {
@@ -363,9 +385,10 @@ section.checkboxes {
   .checkboxes-right {
     margin: 0 24px 24px;
     @media ($tablet) {
-      width: 40%;
+      width: 49%;
       display: inline-block;
       vertical-align: top;
+      margin: 0 0 24px;
     }
   }
 
@@ -376,8 +399,8 @@ section.checkboxes {
       display: inline-block;
       font-size: 24px;
       box-sizing: border-box;
-      padding: 24px;
-      border-right: 1px solid rgba(0, 0, 0, .24);
+      padding: 24px 22px;
+      //border-right: 1px solid rgba(0, 0, 0, .24);
       vertical-align: middle;
 
       &.double {
@@ -481,6 +504,9 @@ section.lies {
       vertical-align: middle;
       color: darkred;
       font-weight: bold;
+      @media ($tablet) {
+        font-size: 21px;
+      }
     }
     .lies-copy {
       padding-top: 12px;
@@ -513,12 +539,26 @@ section.prereview {
   font-size: 27px;
   line-height: 1.6;
   text-align: center;
+
+  b {
+    font-weight: bold;
+  }
 }
 
 section.reviews {
   margin: 24px;
   line-height: 1.6;
   text-align: center;
+
+  .reviews-left,
+  .reviews-right {
+
+    @media ($tablet) {
+      width: 40%;
+      margin: 0 24px 0;
+      display: inline-block;
+    }
+  }
 
   .reviews-item {
     margin-bottom: 48px;
@@ -538,23 +578,69 @@ section.reviews {
 
 section.deals {
   //padding: 24px;
+  position: relative;
   box-sizing: border-box;
   line-height: 1.6;
   text-align: center;
   overflow: hidden;
+  .deal-container {
+    position: relative;
+    width: 300vw;
+    display: flex;
+    transition: 100ms all;
+    @media ($tablet) {
+      width: 100%;
+    }
+  }
+  
+  .fa-angle-left {
+    font-weight: bold;
+    position: absolute;
+    font-size: 36px;
+    top: calc(50% - 56px);
+    padding: 56px 24px;
+    left:0;
+    z-index: 999;
+
+    @media ($tablet) {
+      display: none;
+    }
+  }
+
+  .fa-angle-right {
+    font-weight: bold;
+    position: absolute;
+    font-size: 36px;
+    top: calc(50% - 56px);
+    padding: 56px 24px;
+    right:0;
+    z-index: 999;
+
+    @media ($tablet) {
+      display: none;
+    }
+  }
+
   .deal {
+    width: 100vw;
     padding: 24px;
     box-sizing: border-box;
+    position: relative;
+    
     &:nth-of-type(1) {
       background: rgba(#6b94b5,.24);
     }
     &:nth-of-type(2) {
       background: rgba(#6b94b5,.08);
     }
+    @media ($tablet) {
+      width:33.3%;
+    }
   }
 
   .deal-title {
-    font-size: 32px;
+    font-size: 27px;
+    white-space:  nowrap;
 
   }
 
@@ -569,6 +655,10 @@ section.deals {
   .deal-img-group {
     width: 72%;
     margin: 16px auto;
+
+    &:nth-of-type(1) {
+      margin: 22px auto;
+    }
   }
 
   .deal-price {
@@ -588,6 +678,27 @@ section.deals {
   .deal-tag {
     
   }
+  .deal-call {
+    display: none;
+    //background: green;
+    position: absolute;
+    color: white;
+    padding: 6px 12px;  
+    width: 40%;
+    //border-radius: 100px;
+    font-size: 17px;
+    left: calc(50% - 72px);
+    top: calc(50% + 4px);
+    text-align: center;
+    background: rgba(0,0,0,.72);
+    box-shadow: 0px 0px 24px 0px rgba(0,0,0,1);
+    b {
+      font-weight: bold;
+    }
+    @media ($tablet) {
+      display:none;
+    }
+  }
 
   .deal-cta {
     display: block;
@@ -602,5 +713,9 @@ section.deals {
     border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
+
+    @media ($tablet) {
+      padding: 8px 0;
+    }
   }
 }
